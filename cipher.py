@@ -10,17 +10,23 @@ def caesar(text_input, shift_amount, cipher_direction):
     end_text = ''
     for letter in text_input:
         if cipher_direction == 'encode':
-            shift_index = alphabet.index(letter) + shift_amount
-            if shift_index > 25:
-                end_text += alphabet[shift_index - 26]
+            if letter not in alphabet:
+                end_text += letter
             else:
-                end_text += alphabet[shift_index]
+                shift_index = alphabet.index(letter) + shift_amount
+                if shift_index > 25:
+                    end_text += alphabet[shift_index - 26]
+                else:
+                    end_text += alphabet[shift_index]
         else:
-            shift_index = alphabet.index(letter) - shift_amount
-            if shift_index < 0:
-                end_text += alphabet[shift_index + 26]
+            if letter not in alphabet:
+                end_text += letter
             else:
-                end_text += alphabet[shift_index]
+                shift_index = alphabet.index(letter) - shift_amount
+                if shift_index < 0:
+                    end_text += alphabet[shift_index + 26]
+                else:
+                    end_text += alphabet[shift_index]
     print(f'The {cipher_direction}d text is {end_text}.')
 
 
